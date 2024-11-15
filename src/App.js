@@ -1,24 +1,27 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
+import ChatBox from './Components/Chat/chat';
+import UploadPdf from './Components/Uploadpdf/uploadpdf';
+
 
 function App() {
+  const [chat,setChat] = useState(true);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+      <button
+           onClick={e=>setChat(!chat)}>
+               {`Go to${chat?'Upload':'Chat'}`}
+          </button>
+        {/* <Routes> */}
+
+          {chat ?<ChatBox />:<UploadPdf />}
+          {/* <Route path="/chat" element={} />
+          <Route path="/upload" element={} /> */}
+        {/* </Routes> */}
+      </div>
+    </Router>
   );
 }
 
